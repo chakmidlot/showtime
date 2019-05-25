@@ -24,9 +24,9 @@ class Checker:
                 for movie_code, movie_name, dates in update:
                     last_date_in_db = db_dates_dict.get(movie_code, [""])[-1]
                     new_dates = [x for x in dates if x > last_date_in_db]
-                    self.alert(movie_code, movie_name, new_dates)
-
-                    self.db.add_dates(movie_code, movie_name, dates)
+                    if new_dates:
+                        self.alert(movie_code, movie_name, new_dates)
+                        self.db.add_dates(movie_code, movie_name, dates)
 
             except Exception:
                 logger.error(traceback.format_exc())
