@@ -52,13 +52,14 @@ class Telergam:
                 time.sleep(10)
 
     def parse_message(self, message):
-        match = self.command_pattern.match(message['text'])
+        if 'text' in message:
+            match = self.command_pattern.match(message['text'])
 
-        if match:
-            command_name, data = match.groups()
-            command = getattr(self.commands, command_name)
-            if command:
-                return command(message['chat']['id'], data)
+            if match:
+                command_name, data = match.groups()
+                command = getattr(self.commands, command_name)
+                if command:
+                    return command(message['chat']['id'], data)
 
 
 if __name__ == '__main__':
