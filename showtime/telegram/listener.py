@@ -1,7 +1,6 @@
 import time
 import logging
 import traceback
-from pprint import pprint
 import re
 
 import requests
