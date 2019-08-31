@@ -1,6 +1,5 @@
 kind: pipeline
 name: test
-type: docker
 
 steps:
   - name: build
